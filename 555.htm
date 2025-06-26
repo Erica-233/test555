@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="内閣官房公式サイト - 豊川祥子内閣の政策情報と行政サービス">
+    <title>内閣官房 - 豊川内閣ポータル</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    
+    <!-- Tailwind CSS 設定 -->
+    <script>
+        // 检测用户系统偏好的颜色模式
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.classList.toggle('dark', prefersDark);
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gov-primary': '#1a4b8c', // 深蓝色作为主色调
+            'gov-secondary': '#3b82f6', // 中蓝色作为辅助色
+            'gov-accent': '#f97316', // 橙色作为强调色
+            'gov-dark': '#0f172a', // 深色背景
+            'gov-light': '#f8fafc' // 浅色背景
+                    },
+                    fontFamily: {
+                        sans: ['Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', 'sans-serif'],
+                        serif: ['Yu Mincho', 'YuMincho', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .hover-lift {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .hover-lift:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .nav-shadow {
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            }
+            .animate-fade-in {
+                animation: fadeIn 0.8s ease forwards;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+    </style>
+    <style>
+        /* 深色模式样式 */
+        .dark {
+            --tw-bg-opacity: 1;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .dark .bg-white {
+            background-color: #1e293b;
+        }
+        .dark .text-gray-800 {
+            color: #f8fafc;
+        }
+        .dark .text-gray-600 {
+            color: #e2e8f0;
+        }
+        .dark .border-gray-300 {
+            border-color: #475569;
+        }
+        .dark .bg-gray-50 {
+            background-color: #1e293b;
+        }
+        .dark .hover\:bg-gray-100:hover {
+            background-color: #334155;
+        }
+        .dark .text-gray-500 {
+            color: #94a3b8;
+        }
+        .dark .bg-gray-800 {
+            background-color: #0f172a;
+        }
+        .dark .border-gray-700 {
+            border-color: #334155;
+        }
+        .dark .text-white\/80 {
+            color: rgba(248, 250, 252, 0.8);
+        }
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* 加载动画 */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- 緊急通知バ-->
+    <div class="bg-red-600 text-white py-2 px-4">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <div class="flex items-center">
+                <span class="font-bold mr-2">▶【重要】</span>
+                <span>令和6年能登半島地震復興支援情報</span>
+            </div>
+            <a href="#" class="text-white hover:text-yellow-200 transition-colors">
+                <i class="fa fa-external-link mr-1"></i>詳細を見る
+            </a>
+        </div>
+    </div>
+
+    <!-- 标题 -->
+    <header class="bg-white sticky top-0 z-50 nav-shadow transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-4">
+            <!-- 上部标题 -->
+            <div class="flex flex-wrap items-center justify-between py-4">
+                <div class="flex items-center">
+                    <img src="https://patchwiki.biligame.com/images/bangdream/thumb/b/bc/acjgff3xwnhs45ryix5yur057tqxzv2.png/60px-Chara_icon_20.png" alt="内閣官房ロゴ" class="h-12 mr-4">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.v6oQ2JMIUFWBYTPWyyJ8FAHaHa?rs=1&pid=ImgDetMain" alt="首相官邸ロゴ" class="h-12">
+                </div>
+                
+                <!-- 搜索框 -->
+                <div class="hidden md:flex items-center w-1/3">
+                    <div class="relative w-full">
+                        <input type="text" placeholder="キーワードを入力してください" class="w-full py-2 px-4 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gov-secondary/50">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gov-secondary transition-colors">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 标题链接 -->
+        <div class="flex items-center space-x-4">
+            <div class="relative">
+                <select id="language-selector" class="bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gov-secondary/50 appearance-none bg-white">
+                    <option value="ja">日本語</option>
+                    <option value="zh">中文</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                    <i class="fa fa-chevron-down text-xs"></i>
+                </div>
+            </div>
+            <button id="theme-toggle" class="text-sm hover:text-gov-secondary transition-colors">
+                <i class="fa fa-moon-o mr-1"></i> ダークモード
+            </button>
+            <a href="#" class="text-sm hover:text-gov-secondary transition-colors"><i class="fa fa-rss mr-1"></i> RSS</a>
+            <a href="#" class="text-sm hover:text-gov-secondary transition-colors"><i class="fa fa-twitter mr-1"></i> Twitter</a>
+            <a href="#" class="text-sm hover:text-gov-secondary transition-colors"><i class="fa fa-youtube-play mr-1"></i> YouTube</a>
+            <a href="#" class="text-sm hover:text-gov-secondary transition-colors"><i class="fa fa-envelope mr-1"></i> メール</a>
+            <button class="md:hidden text-gray-700 hover:text-gov-secondary transition-colors" id="mobile-menu-button">
+                <i class="fa fa-bars text-xl"></i>
+            </button>
+        </div>
+            </div>
+            
+            <!-- 主导航 -->
+            <nav class="bg-gov-primary text-white">
+                <ul class="flex flex-wrap justify-between md:justify-center">
+                    <li class="relative group">
+                        <a href="#" class="block py-3 px-4 hover:bg-gov-secondary transition-colors">
+                            トップページ
+                        </a>
+                    </li>
+                    <li class="relative group">
+                        <a href="#policy" class="block py-3 px-4 hover:bg-gov-secondary transition-colors">
+                            重点政策
+                        </a>
+                        <div class="absolute left-0 z-10 w-56 bg-white shadow-lg rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:-translate-y-1">
+                            <ul class="py-2">
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">自衛隊の災害救援改革</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">デジタル田園都市構想</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">全世代型社会保障</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">防災対策強化</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="relative group">
+                        <a href="#cabinet" class="block py-3 px-4 hover:bg-gov-secondary transition-colors">
+                            内閣構成
+                        </a>
+                        <div class="absolute left-0 z-10 w-56 bg-white shadow-lg rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:-translate-y-1">
+                            <ul class="py-2">
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">内閣メンバー</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">組織図</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">大臣ページ</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="relative group">
+                        <a href="#news" class="block py-3 px-4 hover:bg-gov-secondary transition-colors">
+                            最新情報
+                        </a>
+                        <div class="absolute left-0 z-10 w-56 bg-white shadow-lg rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:-translate-y-1">
+                            <ul class="py-2">
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">記者会見</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">政策発表</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">内閣決定</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">日程予定</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="relative group">
+                        <a href="#documents" class="block py-3 px-4 hover:bg-gov-secondary transition-colors">
+                            公文書
+                        </a>
+                        <div class="absolute left-0 z-10 w-56 bg-white shadow-lg rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:-translate-y-1">
+                            <ul class="py-2">
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">法律・政令</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">予算書</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">白書</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">統計資料</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="relative group">
+                        <a href="#contact" class="block py-3 px-4 hover:bg-gov-secondary transition-colors">
+                            お問い合わせ
+                        </a>
+                        <div class="absolute left-0 z-10 w-56 bg-white shadow-lg rounded-b-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:-translate-y-1">
+                            <ul class="py-2">
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">オンライン調査</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">ご意見箱</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">オンライン質問</a></li>
+                                <li><a href="#" class="block py-2 px-4 text-gray-800 hover:bg-gray-100 transition-colors">よくある質問</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- モバイルメニュー -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="mobile-menu-overlay">
+        <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50">
+        <div class="p-4 border-b flex justify-between items-center">
+            <h3 class="font-bold text-lg">メニュー</h3>
+            <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-700">
+                <i class="fa fa-times text-xl"></i>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-1">
+                <li>
+                    <button class="mobile-submenu-trigger w-full flex justify-between items-center py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">
+                        政府情報 <i class="fa fa-chevron-down ml-2"></i>
+                    </button>
+                    <ul class="ml-4 mt-1 mb-2 hidden mobile-submenu space-y-1">
+                        <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">オンライン調査</a></li>
+                <li class="mb-1">
+                    <a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">
+                        トップページ
+                    </a>
+                </li>
+                    <li class="mb-1">
+                        <button class="w-full text-left py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors flex justify-between items-center mobile-submenu-trigger">
+                            重点政策 <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <ul class="ml-4 mt-1 mb-2 hidden mobile-submenu">
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">自衛隊の災害救援改革</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">デジタル田園都市構想</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">全世代型社会保障</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">防災対策強化</a></li>
+                        </ul>
+                    </li>
+                    <li class="mb-1">
+                        <button class="w-full text-left py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors flex justify-between items-center mobile-submenu-trigger">
+                            内閣構成 <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <ul class="ml-4 mt-1 mb-2 hidden mobile-submenu">
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">内閣メンバー</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">組織図</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">大臣ページ</a></li>
+                        </ul>
+                    </li>
+                    <li class="mb-1">
+                        <button class="w-full text-left py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors flex justify-between items-center mobile-submenu-trigger">
+                            最新情報 <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <ul class="ml-4 mt-1 mb-2 hidden mobile-submenu">
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">記者会見</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">政策発表</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">内閣決定</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">日程予定</a></li>
+                        </ul>
+                    </li>
+                    <li class="mb-1">
+                        <button class="w-full text-left py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors flex justify-between items-center mobile-submenu-trigger">
+                            公文書 <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <ul class="ml-4 mt-1 mb-2 hidden mobile-submenu">
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">法律・政令</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">予算書</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">白書</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">統計資料</a></li>
+                        </ul>
+                    </li>
+                    <li class="mb-1">
+                        <button class="w-full text-left py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors flex justify-between items-center mobile-submenu-trigger">
+                            お問い合わせ <i class="fa fa-chevron-down text-xs"></i>
+                        </button>
+                        <ul class="ml-4 mt-1 mb-2 hidden mobile-submenu">
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">オンライン調査</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">ご意見箱</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">オンライン質問</a></li>
+                            <li><a href="#" class="block py-2 px-4 hover:bg-gray-100 rounded-lg transition-colors">よくある質問</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="mt-6 pt-4 border-t">
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-white hover:bg-red-600 transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gov-primary flex items-center justify-center text-white hover:bg-gov-secondary transition-colors">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主内容 -->
+    <main>
+        <!-- 主视觉 -->
+        <section class="relative h-[50vh] sm:h-[60vh] min-h-[300px] sm:min-h-[400px] overflow-hidden">
+            <div class="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.79c0608b8011e416522d8a3e494b9a2e?rik=Fea6LaMPXKo3Xw&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50058%2f3972.jpg_wh1200.jpg&ehk=ofrh14N%2fbHmibBP8Tv5YoosBKFIXejiZEpWRmij9CTc%3d&risl=&pid=ImgRaw&r=0" alt="日本の景色" class="absolute inset-0 w-full h-full object-cover object-center">
+            <div class="relative z-20 h-full flex items-center">
+                <div class="container mx-auto px-4">
+                    <div class="max-w-3xl">
+                        <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold text-white leading-tight text-shadow mb-4">
+                            持続可能な未来への挑戦
+                        </h1>
+                        <blockquote class="text-[clamp(1.2rem,3vw,1.8rem)] text-white mb-6">
+                            「一生私と内閣を組もう」<br>
+                            <cite class="text-white/80 text-lg"> - 豊川祥子 内閣総理大臣</cite>
+                        </blockquote>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#policy" class="px-6 py-3 bg-gov-primary hover:bg-gov-secondary text-white rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300">
+                                重点政策を見る
+                            </a>
+                            <a href="#news" class="px-6 py-3 bg-white hover:bg-gray-100 text-gov-primary rounded-lg transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300">
+                                最新情報を見る
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- 首相简介 -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="md:w-1/3">
+                            <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.yJVAEhr0_pdOgKv9_ekh3gHaKY?rs=1&pid=ImgDetMain" alt="豊川祥子総理" class="w-full h-auto rounded-lg shadow-xl hover-lift">
+                        </div>
+                        <div class="md:w-2/3">
+                            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gov-primary mb-4">
+                                豊川祥子 内閣総理大臣
+                            </h2>
+                            <p class="text-lg font-medium text-gray-700 mb-4">第101代内閣総理大臣（令和4年11月10日就任）</p>
+                            
+                            <div class="mb-6">
+                                <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                    <i class="fa fa-bullseye text-gov-secondary mr-2"></i>政治理念
+                                </h3>
+                                <ul class="space-y-2">
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-gov-secondary mt-1 mr-2"></i>
+                                        <span>持続可能な開発目標（SDGs）の達成を目指し、環境と経済の両立を図る。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-gov-secondary mt-1 mr-2"></i>
+                                        <span>デジタル技術を活用した行政改革と地方創生により、全国に活力をもたらす。</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fa fa-check-circle text-gov-secondary mt-1 mr-2"></i>
+                                        <span>社会保障制度の充実と教育改革により、全世代が安心して暮らせる社会を築く。</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-3 flex items-center">
+                                    <i class="fa fa-history text-gov-secondary mr-2"></i>主要経歴
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="relative pl-8">
+                                        <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-gov-secondary"></div>
+                                        <div class="absolute left-2 top-4 w-0.5 h-full bg-gray-300"></div>
+                                        <div class="pb-4">
+                                            <span class="text-sm font-medium text-gov-secondary">令和元年</span>
+                                            <p>池袋特別区長就任</p>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-gov-secondary"></div>
+                                        <div class="absolute left-2 top-4 w-0.5 h-full bg-gray-300"></div>
+                                        <div class="pb-4">
+                                            <span class="text-sm font-medium text-gov-secondary">令和3年</span>
+                                            <p>内閣府特命担当大臣（地方創生）</p>
+                                        </div>
+                                    </div>
+                                    <div class="relative pl-8">
+                                        <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-gov-secondary"></div>
+                                        <div class="pb-4">
+                                            <span class="text-sm font-medium text-gov-secondary">令和4年</span>
+                                            <p>第101代内閣総理大臣就任</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 重点政策 -->
+        <section id="policy" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gov-primary mb-2 text-center">重点政策</h2>
+                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                    豊川内閣の主要政策分野とその目標についてご紹介します。
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 自衛隊の災害救援改革-->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.umkbIlcnlRJaznT58Hc3QAHaEo?rs=1&pid=ImgDetMain" alt="SDGs" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa fa-crosshairs text-2xl text-green-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">自衛隊の災害救援改革</h3>
+                            <p class="text-gray-600 mb-4">
+                                激甚化・頻発化する自然災害に備え、自衛隊の災害派遣能力を強化し、より迅速かつ効果的な救援活動を実現するための改革を推進します。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>災害発生時の初動対応時間の短縮</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>自治体・関係機関との連携強化及び共同訓練の拡充</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>ドローン・先端技術を活用した情報収集・分析能力の向上</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                詳細を見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- デジタル政策カード -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.2515ad20e28b998f1fdc4d214424c26f?rik=pVh6mPzQN8OPyA&riu=http%3a%2f%2fi1.hdslb.com%2fbfs%2farchive%2f18e60aab2d59ea36a17860d172a7a6f11e4b4ce5.jpg&ehk=YCDvxwjdtH%2fTN0VlULay%2bKAFM2kQZZgOqs8XJ%2fgxD0M%3d&risl=&pid=ImgRaw&r=0" alt="デジタル" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                                <i class="fa fa-microchip text-2xl text-blue-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">デジタル田園都市構想</h3>
+                            <p class="text-gray-600 mb-4">
+                                デジタル技術を活用して、都市と地方の格差を解消し、全国に活力をもたらす新しい社会構造を築きます。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>全国高速光ファイバー網の整備と普及</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>AI技術による行政審査システムの導入</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>スマート農業技術の開発と普及支援</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                詳細を見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 社会保障カード -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://ts1.tc.mm.bing.net/th/id/R-C.2515ad20e28b998f1fdc4d214424c26f?rik=pVh6mPzQN8OPyA&riu=http%3a%2f%2fi1.hdslb.com%2fbfs%2farchive%2f18e60aab2d59ea36a17860d172a7a6f11e4b4ce5.jpg&ehk=YCDvxwjdtH%2fTN0VlULay%2bKAFM2kQZZgOqs8XJ%2fgxD0M%3d&risl=&pid=ImgRaw&r=0" alt="社会保障" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="w-14 h-14 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                                <i class="fa fa-heart text-2xl text-purple-600"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">全世代型社会保障</h3>
+                            <p class="text-gray-600 mb-4">
+                                少子高齢化社会に対応し、子育て支援、教育充実、高齢者介護など全世代が安心して暮らせる社会保障制度を構築します。
+                            </p>
+                            <ul class="space-y-2 mb-6">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                                    <span>こども庁の創設（令和6年4月）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                                    <span>高等教育の無償化と奨学金制度の充実</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle text-purple-500 mt-1 mr-2"></i>
+                                    <span>介護人材の待遇改善と確保計画</span>
+                                </li>
+                            </ul>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                詳細を見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 政策管道 -->
+                <div class="mt-16 bg-gray-50 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-gov-primary mb-6 text-center">政策実施パイプライン</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full">
+                            <thead>
+                                <tr class="bg-gov-primary text-white">
+                                    <th class="py-3 px-4 text-left">政策分野</th>
+                                    <th class="py-3 px-4 text-center">2024年</th>
+                                    <th class="py-3 px-4 text-center">2025年</th>
+                                    <th class="py-3 px-4 text-center">2026年</th>
+                                    <th class="py-3 px-4 text-center">2027年以降</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <tr class="border-b">
+                                    <td class="py-3 px-4 font-medium">自衛隊の災害救援改革</td>
+                                    <td class="py-3 px-4 text-center bg-green-100">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-green-500 align-middle"></span>
+                                        <span class="ml-2 align-middle">着手中</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-green-200">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-green-500"></span>
+                                        <span class="ml-2">実施中</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-green-300">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-green-500"></span>
+                                        <span class="ml-2">中期評価</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-green-400">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-green-500"></span>
+                                        <span class="ml-2">成果検証</span>
+                                    </td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-3 px-4 font-medium">デジタル田園都市構想</td>
+                                    <td class="py-3 px-4 text-center bg-blue-100">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>
+                                        <span class="ml-2">着手中</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-blue-200">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>
+                                        <span class="ml-2">実施中</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-blue-300">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>
+                                        <span class="ml-2">中期評価</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-blue-400">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span>
+                                        <span class="ml-2">成果検証</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium">全世代型社会保障</td>
+                                    <td class="py-3 px-4 text-center bg-purple-100">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-purple-500"></span>
+                                        <span class="ml-2">着手中</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-purple-200">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-purple-500"></span>
+                                        <span class="ml-2">実施中</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-purple-300">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-purple-500"></span>
+                                        <span class="ml-2">中期評価</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-center bg-purple-400">
+                                        <span class="inline-block w-3 h-3 rounded-full bg-purple-500"></span>
+                                        <span class="ml-2">成果検証</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 内阁构成 -->
+        <section id="cabinet" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gov-primary mb-2 text-center">池袋新軍のメンバー</h2>
+                <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                    池袋新軍のメンバーとその担当分野についてご紹介します。
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- デジタル大臣 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.5lPz3bLMdyq-2MnNs8yZUgHaGR?rs=1&pid=ImgDetMain" alt="千早愛音大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">千早 愛音</h3>
+                            <p class="text-gov-primary font-medium mb-3">デジタル改革担当大臣</p>
+                            <p class="text-gray-600 mb-4">
+                                政府のデジタル化推進とIT技術を活用した行政改革を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                                    デジタル化
+                                </span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                                    AI
+                                </span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                                    データ活用
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 外務大臣 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://i.bobopic.com/small/111850710.jpg" alt="高松灯大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">高松 灯</h3>
+                            <p class="text-gov-primary font-medium mb-3">外務大臣</p>
+                            <p class="text-gray-600 mb-4">
+                                外交政策の立案と実施、国際関係の調整を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                                    外交政策
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                                    国際協力
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                                    安全保障
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 財務大臣 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://i.bobopic.com/small/110894003.jpg" alt="長崎素世大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">長崎 素世</h3>
+                            <p class="text-gov-primary font-medium mb-3">財務大臣</p>
+                            <p class="text-gray-600 mb-4">
+                                国家予算の作成と管理、税制改革、経済政策の立案を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">
+                                    財政政策
+                                </span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">
+                                    税制改革
+                                </span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">
+                                    経済成長
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 農林水産大臣 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.4djaJuXMrWKfvTZqNe-9UgHaHE?rs=1&pid=ImgDetMain" alt="若葉睦大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">若葉 睦</h3>
+                            <p class="text-gov-primary font-medium mb-3">農林水産大臣</p>
+                            <p class="text-gray-600 mb-4">
+                                農業、林業、水産業の振興と食料安全保障の強化を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">
+                                    農業政策
+                                </span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">
+                                    食料安全
+                                </span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">
+                                    水産資源
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 内閣官房長官 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.JSjJX2PfKlN9hua81uedMwHaH3?rs=1&pid=ImgDetMain" alt="三角初华大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">三角 初华</h3>
+                            <p class="text-gov-primary font-medium mb-3">内閣官房長官</p>
+                            <p class="text-gray-600 mb-4">
+                                内閣の調整と運営、危機管理、情報発信を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">
+                                    内閣運営
+                                </span>
+                                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">
+                                    危機管理
+                                </span>
+                                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">
+                                    情報公開
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 防衛大臣 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ipookg1k5TYJXzWeA2KV_wAAAA?rs=1&pid=ImgDetMain" alt="八潘海玲大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">八潘 海玲</h3>
+                            <p class="text-gov-primary font-medium mb-3">防衛大臣</p>
+                            <p class="text-gray-600 mb-4">
+                                防衛政策の立案と実施、自衛隊の運営管理を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
+                                    防衛政策
+                                </span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
+                                    自衛隊運営
+                                </span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
+                                    国際平和活動
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 環境大臣 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://i.bobopic.com/small/126088432.jpg" alt="佑天寺若麦大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">佑天寺 若麦</h3>
+                            <p class="text-gov-primary font-medium mb-3">環境大臣</p>
+                            <p class="text-gray-600 mb-4">
+                                環境保護政策の立案と実施、気候変動対策を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                                    環境政策
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                                    気候変動
+                                </span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                                    生物多様性
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 在中国大使 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-64 overflow-hidden">
+                            <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.9TJdS5gp0LvBpa4tXJjasQHaHa?rs=1&pid=ImgDetMain" alt="要楽奈大臣" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-800 mb-1">要 楽奈</h3>
+                            <p class="text-gov-primary font-medium mb-3">在中国大使</p>
+                            <p class="text-gray-600 mb-4">
+                                日中関係の強化と発展、両国間の交流促進を担当します。
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">
+                                    日中関係
+                                </span>
+                                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">
+                                    経済交流
+                                </span>
+                                <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs">
+                                    文化交流
+                                </span>
+                            </div>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                プロフィールを見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最新情報 -->
+        <section id="news" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-gov-primary mb-2">最新情報</h2>
+                        <p class="text-gray-600 max-w-2xl">
+                            内閣の最新の政策発表、記者会見、日程予定などの情報を随時更新しています。
+                        </p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <div class="relative">
+                            <select class="appearance-none bg-gray-100 border border-gray-200 rounded-lg py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-gov-secondary/50">
+                                <option>全てのカテゴリー</option>
+                                <option>政策発表</option>
+                                <option>記者会見</option>
+                                <option>内閣決定</option>
+                                <option>日程予定</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                                <i class="fa fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 新闻卡片1 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/1015/800/600" alt="大阪・関西万博視察" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                                    政策発表
+                                </span>
+                                <span class="ml-3 text-gray-500 text-sm">令和6年4月5日</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">大阪・関西万博視察</h3>
+                            <p class="text-gray-600 mb-4">
+                                総理大臣は大阪・関西万博の会場を視察し、関連する計画について説明を受けました。万博は日本の技術力と文化を世界に発信する大きな機会と位置付けられています。
+                            </p>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                詳細を見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 新闻卡片2 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/1019/800/600" alt="与野党党首会談" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">
+                                    記者会見
+                                </span>
+                                <span class="ml-3 text-gray-500 text-sm">令和6年4月4日</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">与野党党首会談</h3>
+                            <p class="text-gray-600 mb-4">
+                                総理大臣は与野党党首と会談し、政策協議を行いました。特に経済再生と地方創生に関する施策について意見交換が行われ、一部の政策について合意が得られました。
+                            </p>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                詳細を見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 新闻卡片3 -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-lift">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://picsum.photos/id/1033/800/600" alt="防衛大学校卒業式" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-3">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs">
+                                    日程予定
+                                </span>
+                                <span class="ml-3 text-gray-500 text-sm">令和6年4月3日</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">防衛大学校卒業式</h3>
+                            <p class="text-gray-600 mb-4">
+                                総理大臣は防衛大学校の卒業式に出席し、訓示を行いました。総理大臣は卒業生に対して、国の安全保障に向けた責任感と使命感を持って活躍するよう激励しました。
+                            </p>
+                            <a href="#" class="inline-flex items-center text-gov-primary hover:text-gov-secondary font-medium transition-colors">
+                                詳細を見る <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 日程予定 -->
+                <div class="mt-16 bg-gray-50 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-gov-primary mb-6">近況日程</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 rounded-full bg-gov-primary flex flex-col items-center justify-center text-white mr-4">
+                                    <span class="text-sm">4月</span>
+                                    <span class="text-2xl font-bold">10</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-bold text-gray-800 mb-1">東京経済同友会講演</h4>
+                                    <p class="text-gray-600 mb-2">
+                                        総理大臣は東京経済同友会の定例会に出席し、経済政策に関する講演を行います。
+                                    </p>
+                                    <div class="flex items-center text-gray-500 text-sm">
+                                        <i class="fa fa-clock-o mr-1"></i> 13:00-14:30
+                                        <span class="mx-2">|</span>
+                                        <i class="fa fa-map-marker mr-1"></i> 東京・大手町
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">
+                                        講演
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-start">
+                                <div class="w-16 h-16 rounded-full bg-gov-primary flex flex-col items-center justify-center text-white mr-4">
+                                    <span class="text-sm">4月</span>
+                                    <span class="text-2xl font-bold">12</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-bold text-gray-800 mb-1">全国知事会議</h4>
+                                    <p class="text-gray-600 mb-2">
+                                        総理大臣は全国知事会議に出席し、地方創生に関する施策について意見交換を行います。
+                                    </p>
+                                    <div class="flex items-center text-gray-500 text-sm">
+                                       <i class="fa fa-clock-o mr-1"></i> 10:00-12:00
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">
+                                        出席
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系部分 -->
+        <section class="py-16 bg-gov-light dark:bg-gov-dark">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 text-gov-primary dark:text-white">お問い合わせ</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- 联系信息 -->
+                    <div class="space-y-8">
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto sm:mx-0 mb-2 sm:mb-0">
+                                <i class="fa fa-map-marker text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-700 dark:text-white">本部所在地</h3>
+                                <p class="text-gray-600 dark:text-gray-300">東京都千代田区永田町２丁目３</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto sm:mx-0 mb-2 sm:mb-0">
+                                <i class="fa fa-phone text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-700 dark:text-white">電話番号</h3>
+                                <p class="text-gray-600 dark:text-gray-300">114-514-1919</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto sm:mx-0 mb-2 sm:mb-0">
+                                <i class="fa fa-envelope text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-700 dark:text-white">メールアドレス</h3>
+                                <p class="text-gray-600 dark:text-gray-300">1919810@ss.ss</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto sm:mx-0 mb-2 sm:mb-0">
+                                <i class="fa fa-fax text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-700 dark:text-white">FAX</h3>
+                                <p class="text-gray-600 dark:text-gray-300">114-514-1919</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start sm:space-x-4 space-y-2 sm:space-y-0 text-center sm:text-left">
+                            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto sm:mx-0 mb-2 sm:mb-0">
+                                <i class="fa fa-clock-o text-blue-700 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-2 text-blue-700 dark:text-white">受付時間</h3>
+                                <p class="text-gray-600 dark:text-gray-300">平日 9:00～18:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 联系表单 -->
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-white mb-1">
+                                <span class="text-red-500">*</span> 氏名
+                            </label>
+                            <input type="text" id="name" name="name" 
+                                   class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-gov-secondary/50 focus:border-gov-secondary dark:bg-gov-dark dark:text-white" 
+                                   required 
+                                   aria-required="true"
+                                   placeholder="ご氏名をご記入ください">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-white mb-1">
+                                <span class="text-red-500">*</span> メールアドレス
+                            </label>
+                            <input type="email" id="email" name="email" 
+                                   class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-gov-secondary/50 focus:border-gov-secondary dark:bg-gov-dark dark:text-white" 
+                                   required 
+                                   aria-required="true"
+                                   placeholder="メールアドレスをご記入ください">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-white mb-1">
+                                <span class="text-red-500">*</span> お問い合わせ内容
+                            </label>
+                            <textarea id="message" name="message" rows="4" 
+                                      class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-gov-secondary/50 focus:border-gov-secondary dark:bg-gov-dark dark:text-white" 
+                                      required 
+                                      aria-required="true"
+                                      placeholder="お問い合わせの内容を詳細にご記入ください"></textarea>
+                        </div>
+                        <button type="submit" 
+                                class="w-full px-6 py-3 bg-gov-primary text-white font-semibold rounded-lg hover:bg-gov-secondary transition-colors">
+                            お問い合わせを送信する
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+<!-- 底部 -->
+<footer class="bg-gov-dark text-white py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row gap-10 md:gap-16 text-center md:text-left">
+        <!-- 重要链接区块 -->
+        <div class="flex-1 space-y-3">
+          <h3 class="text-lg font-semibold mb-3">重要リンク</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">防災関連情報</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">雇用支援施策</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">子育て支援制度</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">年金制度詳細</a></li>
+            <li><a href="https://www.example.jp/" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">外務省</a></li>
+            <li><a href="https://www.example.jp/" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">厚生労働省</a></li>
+            <li><a href="https://www.example.jp/" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">首相官邸</a></li>
+            <li><a href="https://www.example.jp/" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">内閣官房公式</a></li>
+          </ul>
+        </div>
+        <!-- 联系方式区块 -->
+        <div class="flex-1 space-y-3">
+          <h3 class="text-lg font-semibold mb-3">お問い合わせ</h3>
+          <ul class="space-y-2 text-gray-400 text-base leading-relaxed">
+            <li><span class="font-semibold text-white">電話：</span>114-514-1919</li>
+            <li><span class="font-semibold text-white">メール：</span><a href="mailto:info@example.jp" class="underline hover:text-white">1919810@ss.ss</a></li>
+            <li><span class="font-semibold text-white">FAX：</span>114-514-1919</li>
+            <li><span class="font-semibold text-white">受付時間：</span>平日 9:00～18:00</li>
+          </ul>
+        </div>
+        <!-- 社交图标区块 -->
+        <div class="flex-1 flex flex-col items-center md:items-start space-y-3">
+          <h3 class="text-lg font-semibold mb-3">公式SNS</h3>
+          <div class="flex gap-4 justify-center md:justify-start">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Facebook公式ページ"><i class="fa fa-facebook text-2xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Twitter公式アカウント"><i class="fa fa-twitter text-2xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="Instagram公式アカウント"><i class="fa fa-instagram text-2xl"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors" aria-label="YouTube公式チャンネル"><i class="fa fa-youtube text-2xl"></i></a>
+          </div>
+        </div>
+      </div>
+      <!-- 下部版权等 -->
+      <div class="border-t border-gray-800 pt-6 mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <p class="mb-2 md:mb-0 text-center md:text-left">&copy; 2023 内閣官房. 全ての権利は内閣官房に帰属します。無断転載・複製を禁じます。</p>
+        <div class="flex flex-wrap gap-x-6 gap-y-2 justify-center md:justify-end">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">サイト利用規約</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">個人情報保護方針</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">サイトマップ</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">アクセシビリティ方針</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <!-- 图表初始化和动画效果 -->
+    <script>
+        // 深色模式切换功能
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+                const icon = themeToggle.querySelector('i');
+                const text = themeToggle.childNodes[2].textContent.trim();
+                if (isDark) {
+                    icon.classList.remove('fa-moon-o');
+                    icon.classList.add('fa-sun-o');
+                    themeToggle.childNodes[2].textContent = ' ライトモード';
+                } else {
+                    icon.classList.remove('fa-sun-o');
+                    icon.classList.add('fa-moon-o');
+                    themeToggle.childNodes[2].textContent = ' ダークモード';
+                }
+            });
+
+            // 从localStorage加载主题偏好
+            if (localStorage.getItem('darkMode') === 'enabled' || 
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                const icon = themeToggle.querySelector('i');
+                icon.classList.remove('fa-moon-o');
+                icon.classList.add('fa-sun-o');
+                themeToggle.childNodes[2].textContent = ' ライトモード';
+            }
+        }
+
+        // 图表配置
+        const chartConfig = {
+            type: 'line',
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        };
+
+        // SDGs图表
+        const sdgsCtx = document.getElementById('sdgsChart').getContext('2d');
+        new Chart(sdgsCtx, {
+            ...chartConfig,
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    data: [45, 58, 68, 78],
+                    borderColor: '#10B981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            }
+        });
+
+        // 数字化进度图表
+        const digitalCtx = document.getElementById('digitalChart').getContext('2d');
+        new Chart(digitalCtx, {
+            ...chartConfig,
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    data: [30, 42, 55, 65],
+                    borderColor: '#3B82F6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            }
+        });
+
+        // 社会保障图表
+        const socialCtx = document.getElementById('socialChart').getContext('2d');
+        new Chart(socialCtx, {
+            ...chartConfig,
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    data: [65, 70, 76, 82],
+                    borderColor: '#8B5CF6',
+                    backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            }
+        });
+
+        // 滚动动画 - 增强版
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.hover-lift, section > div > h2, section > div > p').forEach(element => {
+            fadeInObserver.observe(element);
+        });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.hover-lift').forEach(element => {
+            observer.observe(element);
+        });
+
+        // 移动端菜单
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.remove('translate-x-full');
+            }, 10);
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileMenuOverlay.classList.add('hidden');
+            }, 300);
+        });
+
+        // 移动端子菜单
+        document.querySelectorAll('.mobile-submenu-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const submenu = trigger.nextElementSibling;
+                const icon = trigger.querySelector('i');
+                
+                submenu.classList.toggle('hidden');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
+
+    <!-- 表单验证和提交处理 -->
+    <script>
+        // 联系表单验证
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                if (!name || !email || !message) {
+                    alert('必須フィールドをすべて入力してください。');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    alert('有効なメールアドレスを入力してください。');
+                    return;
+                }
+                
+                // 这里可以添加发送表单数据的代码
+                alert('メッセージを送信しました。');
+                contactForm.reset();
+            });
+        }
+
+        // 邮箱验证函数
+        function isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // 新闻订阅表单处理
+        const subscribeForm = document.querySelector('footer form');
+        if (subscribeForm) {
+            subscribeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                
+                if (!email) {
+                    alert('メールアドレスを入力してください。');
+                    return;
+                }
+                
+                if (!isValidEmail(email)) {
+                    alert('有効なメールアドレスを入力してください。');
+                    return;
+                }
+                
+                alert('メッセージを送信しました。');
+                this.reset();
+            });
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 图片懒加载 - 增强版
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有图片添加淡入效果
+            document.querySelectorAll('img').forEach(img => {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease-in-out';
+
+                // 如果图片已经加载完成
+                if (img.complete) {
+                    img.style.opacity = '1';
+                } else {
+                    img.addEventListener('load', function() {
+                        img.style.opacity = '1';
+                    });
+                }
+            });
+
+            // 图片懒加载
+            const lazyImages = document.querySelectorAll('img:not([src])');
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            img.style.opacity = '1';
+                            observer.unobserve(img);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(img => imageObserver.observe(img));
+            }
+        });
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            });
+        });
+
+        lazyImages.forEach(img => imageObserver.observe(img));
+
+        // 新闻卡片动画
+        const newsCards = document.querySelectorAll('.hover-lift');
+        newsCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+
+
+
+    
+    <script>
+        // 语言翻译数据，懒得写翻译了
+        const translations = {
+            ja: {
+                siteTitle: "内閣官房 - 豊川内閣ポータル",
+                siteDescription: "内閣官房公式サイト - 豊川祥子内閣の政策情報と行政サービス",
+                // 导航菜单
+                navHome: "ホーム",
+                navPolicy: "政策実施パイプライン",
+                navCabinet: "池袋新軍のメンバー",
+                navNews: "最新情報",
+                navDocuments: "公文書",
+                navContact: "お問い合わせ",
+                // 紧急通知
+                emergencyNotice: "【重要】令和6年能登半岛地震复兴支援信息（最终更新：2024年3月6日）",
+                readMore: "查看详情",
+                // 搜索框
+                searchPlaceholder: "キーワードを入力してください",
+                // 主题切换
+                darkMode: "ダークモード",
+                lightMode: "ライトモード",
+                // 主视觉区域
+                mainVisualTitle: "邁向可持續的未來",
+                mainVisualQuote: "\"實現數字革新與自然共生的和諧社會，傳承給下一代\"",
+                mainVisualCite: " - 豐川祥子 內閣總理大臣",
+                viewPoliciesBtn: "查看重點政策",
+                viewNewsBtn: "查看最新信息",
+                // 政策管道
+                policyPipelineTitle: "政策実施パイプライン",
+                policyPipelineDescription: "政策実施パイプラインの説明",
+                policyPipelineItem1: "政策実施パイプラインの項目1",
+                policyPipelineItem2: "政策実施パイプラインの項目2",
+                policyPipelineItem3: "政策実施パイプラインの項目3",
+                // 内阁构成
+                cabinetMembersTitle: "池袋新軍のメンバー",
+                cabinetMembersDescription: "池袋新軍のメンバーの説明",
+                cabinetMember1: "池袋新軍のメンバー1",
+                cabinetMember2: "池袋新軍のメンバー2",
+                cabinetMember3: "池袋新軍のメンバー3",
+                // 联系部分
+                contactTitle: "お問い合わせ",
+                contactDescription: "お問い合わせの説明",
+                contactFormName: "お名前",
+                contactFormEmail: "メールアドレス",
+                contactFormMessage: "メッセージ",
+                contactFormSubmit: "送信",
+                contactFormSuccess: "メッセージを送信しました。",
+                contactFormError: "メッセージを送信できませんでした。",
+                // 底部
+                footerTitle: "内閣官房 - 豊川内閣ポータル",
+                footerDescription: "内閣官房公式サイト - 豊川祥子内閣の政策情報と行政サービス",
+                footerCopyright: "© 2024 内閣官房. すべての権利は保護されています。",
+                footerLinks: {
+                    home: "ホーム",
+                    policy: "政策実施パイプライン",
+                    cabinet: "池袋新軍のメンバー",
+                    news: "最新情報",
+                    documents: "公文書",
+                    contact: "お問い合わせ"
+                }
+            },
+            zh: {
+                siteTitle: "内阁官房 - 丰川内阁门户",
+                siteDescription: "内阁官房官方网站 - 丰川祥子内阁的政策信息和行政服务",
+                // 导航菜单
+                navHome: "首页",
+                navPolicy: "重点政策",
+                navCabinet: "内阁构成",
+                navNews: "最新信息",
+                navDocuments: "公文书",
+                navContact: "联系",
+                // 紧急通知
+                emergencyNotice: "【重要】令和6年能登半岛地震复兴支援信息（最终更新：2024年3月6日）",
+                readMore: "查看详情",
+                // 搜索框
+                searchPlaceholder: "请输入关键词",
+                // 主题切换
+                darkMode: "暗色模式",
+                lightMode: "亮色模式",
+                // 主视觉区域
+                mainVisualTitle: "迈向可持续的未来",
+                mainVisualQuote: "\"实现数字创新与自然共生的和谐社会，传承给下一代\"",
+                mainVisualCite: " - 丰川祥子 内阁总理大臣",
+                viewPoliciesBtn: "查看重点政策",
+                viewNewsBtn: "查看最新信息",
+                // 政策管道
+                policyPipelineTitle: "政策实施管道",
+                policyPipelineDescription: "政策实施管道的说明",
+                policyPipelineItem1: "政策实施管道的项目1",
+                policyPipelineItem2: "政策实施管道的项目2",
+                policyPipelineItem3: "政策实施管道的项目3",
+                // 内阁构成
+                cabinetMembersTitle: "内阁构成",
+                cabinetMembersDescription: "内阁构成的说明",
+                cabinetMember1: "内阁构成的成员1",
+                cabinetMember2: "内阁构成的成员2",
+                cabinetMember3: "内阁构成的成员3",
+                // 联系部分
+                contactTitle: "联系",
+                contactDescription: "联系的说明",
+                contactFormName: "姓名",
+                contactFormEmail: "邮箱地址",
+                contactFormMessage: "消息",
+                contactFormSubmit: "发送",
+                contactFormSuccess: "消息已发送！我们会尽快回复您。",
+                contactFormError: "消息发送失败。",
+                // 底部
+                footerTitle: "内阁官房 - 丰川内阁门户",
+                footerDescription: "内阁官房官方网站 - 丰川祥子内阁的政策信息和行政服务",
+                footerCopyright: "© 2024 内阁官房. 所有权利保留。",
+                footerLinks: {
+                    home: "ホーム",
+                    policy: "政策実施パイプライン",
+                    cabinet: "池袋新軍のメンバー",
+                    news: "最新情報",
+                    documents: "公文書",
+                    contact: "お問い合わせ"
+                }
+            },  
+
+        };
+
+        // 语言切换功能
+        const languageSelector = document.getElementById('language-selector');
+        const htmlElement = document.documentElement;
+
+        // 应用翻译
+        function applyTranslations(lang) {
+            // 更新页面标题和元数据
+            document.title = translations[lang].siteTitle;
+            document.querySelector('meta[name="description"]').setAttribute('content', translations[lang].siteDescription);
+            htmlElement.lang = lang;
+
+            // 更新导航菜单
+            document.querySelectorAll('nav a').forEach((link, index) => {
+                const keys = Object.keys(translations[lang]);
+                const navKey = keys.find(k => k.startsWith('nav'));
+                if (navKey) link.textContent = translations[lang][navKey];
+            });
+
+            // 更新紧急通知
+            document.querySelector('.bg-red-600 .flex.items-center span:last-child').textContent = translations[lang].emergencyNotice;
+            document.querySelector('.bg-red-600 a').textContent = translations[lang].readMore;
+
+            // 更新搜索框占位符
+            document.querySelector('input[placeholder="キーワードを入力してください"]').placeholder = translations[lang].searchPlaceholder;
+
+            // 更新主视觉区域
+            document.querySelector('.text-shadow.mb-4').textContent = translations[lang].mainVisualTitle;
+            document.querySelector('blockquote.text-white.mb-6').innerHTML = `${translations[lang].mainVisualQuote}<br><cite>${translations[lang].mainVisualCite}</cite>`;
+            document.querySelectorAll('.relative.z-20 a')[0].textContent = translations[lang].viewPoliciesBtn;
+            document.querySelectorAll('.relative.z-20 a')[1].textContent = translations[lang].viewNewsBtn;
+        }
+
+        // 初始化语言选择器
+        if (languageSelector) {
+            // 从localStorage加载语言偏好
+            const savedLang = localStorage.getItem('preferredLanguage') || 'ja';
+            languageSelector.value = savedLang;
+            applyTranslations(savedLang);
+
+            // 语言选择变化时应用翻译
+            languageSelector.addEventListener('change', function() {
+                const selectedLang = this.value;
+                localStorage.setItem('preferredLanguage', selectedLang);
+                applyTranslations(selectedLang);
+            });
+        }
+
+</body>
+</html>
+
+                  
